@@ -15,12 +15,13 @@ yum install -y python-cryptography pyOpenSSL.x86_64
 
 ## WORKAROUND as per https://github.com/openshift/openshift-ansible/issues/3111
 ## TODO: yum install ansible
-yum install -y "@Development Tools" python2-pip openssl-devel python-devel
-pip install -Iv ansible==2.3.0.0
+yum install -y "@Development Tools" python2-pip openssl-devel python-devel python-rhsm-certificates
+pip install --upgrade pip
+pip install -Iv ansible>=2.3.0.0
 
 mkdir -p ~/workspace && cd ~/workspace
-git clone http://github.com/openshift/openshift-ansible
-git clone http://github.com/gshipley/installcentos
+git clone -b release-3.7 http://github.com/openshift/openshift-ansible
+git clone http://github.com/sharp-pixel/installcentos
 
 cat <<EOD > /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 console console.${DOMAIN}
